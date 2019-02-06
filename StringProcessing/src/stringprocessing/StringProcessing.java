@@ -59,7 +59,7 @@ public class StringProcessing {
             scan.close();
 
         } catch (FileNotFoundException e) {
-            System.err.println("could not find file.");
+            System.err.println("Could not find file.");
             System.exit(-1);
         }
     }
@@ -87,6 +87,22 @@ public class StringProcessing {
             return false;
         }
 
+    }
+    
+    public static boolean emailIsGood(String email){
+        boolean isChar = true;
+        int i = 0;
+        email = email.trim();
+        
+        while(isChar == true && i < email.length()) {
+        
+        
+            isChar = isValidCharacter(email.charAt(i));
+            i++;
+        }
+       
+        
+       return isChar;
     }
 
     public static boolean ageIsGood(String age) {
@@ -121,7 +137,7 @@ public class StringProcessing {
 
     public static boolean recordIsGood(String[] record) {
 
-        boolean answer = fullNameIsGood(record[0], record[1]) && genderIsGood(record[2]) && ageIsGood(record[3]) && phoneNumberIsGood(record[4]);
+        boolean answer = emailIsGood(record[5]) && fullNameIsGood(record[0], record[1]) && genderIsGood(record[2]) && ageIsGood(record[3]) && phoneNumberIsGood(record[4]);
         return answer;
 
     }
@@ -144,6 +160,10 @@ public class StringProcessing {
 
             System.out.println("bad Phone Number: " + record[4].trim());
 
+        } else if (!emailIsGood(record[5])) {
+        
+            System.out.println("bad email: " + record[5].trim());
+        
         }
 
     }
@@ -156,6 +176,16 @@ public class StringProcessing {
 
         return realVal;
 
+    }
+    
+    public static boolean isValidCharacter(char letter){
+        
+        
+       return Character.isLetter(letter) || Character.isDigit(letter) || letter == '@' || letter == '.';
+        
+       
+        
+       
     }
 
 }
