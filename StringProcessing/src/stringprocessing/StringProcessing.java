@@ -181,7 +181,7 @@ public class StringProcessing {
     public static boolean isValidCharacter(char letter){
         
         
-       return Character.isLetter(letter) || Character.isDigit(letter) || letter == '@' || letter == '.';
+       return Character.isLetterOrDigit(letter) || letter == '@' || letter == '.';
         
        
         
